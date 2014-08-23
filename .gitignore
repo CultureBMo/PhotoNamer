@@ -3,3 +3,6 @@
 ################################################################################
 
 /packages
+/bin/Debug
+/obj/Debug
+/PictureUtil.csproj.user
