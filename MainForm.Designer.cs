@@ -48,6 +48,7 @@
             // 
             // goButton
             // 
+            this.goButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.goButton.Location = new System.Drawing.Point(445, 138);
             this.goButton.Name = "goButton";
             this.goButton.Size = new System.Drawing.Size(75, 23);
@@ -67,6 +68,8 @@
             // 
             // pathTextBox
             // 
+            this.pathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pathTextBox.Location = new System.Drawing.Point(105, 12);
             this.pathTextBox.Name = "pathTextBox";
             this.pathTextBox.Size = new System.Drawing.Size(334, 20);
@@ -75,6 +78,7 @@
             // 
             // browseButton
             // 
+            this.browseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.browseButton.Location = new System.Drawing.Point(445, 10);
             this.browseButton.Name = "browseButton";
             this.browseButton.Size = new System.Drawing.Size(75, 23);
@@ -130,6 +134,8 @@
             // 
             // formatStringTextBox
             // 
+            this.formatStringTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.formatStringTextBox.Location = new System.Drawing.Point(105, 87);
             this.formatStringTextBox.Name = "formatStringTextBox";
             this.formatStringTextBox.Size = new System.Drawing.Size(415, 20);

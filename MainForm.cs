@@ -58,6 +58,8 @@
 
         private void GoButton_Click(object sender, EventArgs e)
         {
+            this.logTextBox.Text = string.Empty;
+
             var stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
 
