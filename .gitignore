@@ -7,3 +7,5 @@
 /obj/Debug
 /PictureUtil.csproj.user
 /*.suo
+/PhotoNamer.csproj.user
+/StyleCop.Cache
