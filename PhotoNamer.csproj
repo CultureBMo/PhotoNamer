@@ -7,8 +7,8 @@
     <ProjectGuid>{872D9D42-E019-43C1-8B11-C7EC9B6F8296}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PictureUtil</RootNamespace>
-    <AssemblyName>PictureUtil</AssemblyName>
+    <RootNamespace>PhotoNamer</RootNamespace>
+    <AssemblyName>PhotoNamer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">.\</SolutionDir>

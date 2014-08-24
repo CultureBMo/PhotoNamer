@@ -1,7 +1,7 @@
 ﻿using System;
 using ExifLib;
 
-namespace PictureUtil
+namespace PhotoNamer
 {
     public class Photo
     {

@@ -4,11 +4,18 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 
-namespace PictureUtil
+namespace PhotoNamer
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static string GetNewName(int photoIndex)
+        {
+            var formattedNumber = photoIndex.ToString("000");
+
+            return string.Format("100 {0}.jpg", formattedNumber);
+        }
+
+        private static void Main(string[] args)
         {
             var stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
@@ -63,13 +70,6 @@ namespace PictureUtil
 
                 Console.WriteLine("----------------------------");
             }
-        }
-
-        private static string GetNewName(int photoIndex)
-        {
-            var formattedNumber = photoIndex.ToString("000");
-
-            return string.Format("100 {0}.jpg", formattedNumber);
         }
     }
 }
