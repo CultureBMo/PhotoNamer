@@ -78,6 +78,7 @@
 
                 stopwatch.Stop();
                 this.Log(string.Format("Time elapsed: {0}", stopwatch.Elapsed));
+                this.Log("Copyright © CultureBMo 2014");
             }
         }
 
@@ -87,6 +88,19 @@
             {
                 this.pathTextBox.Text = this.folderBrowserDialog.SelectedPath;
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            var defaultDirectory = @"D:\Users\Ben\OneDrive\Pictures\2014";
+
+            if (!Directory.Exists(defaultDirectory))
+            {
+                defaultDirectory = @"C:\Temp";
+            }
+
+            this.pathTextBox.Text = defaultDirectory;
+            this.folderBrowserDialog.SelectedPath = defaultDirectory;
         }
     }
 }

@@ -75,7 +75,7 @@
             this.pathTextBox.Name = "pathTextBox";
             this.pathTextBox.Size = new System.Drawing.Size(334, 20);
             this.pathTextBox.TabIndex = 2;
-            this.pathTextBox.Text = "C:\\Temp";
+            this.pathTextBox.Text = "D:\\Users\\Ben\\OneDrive\\Pictures\\2014";
             // 
             // browseButton
             // 
@@ -91,7 +91,7 @@
             // folderBrowserDialog
             // 
             this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            this.folderBrowserDialog.SelectedPath = "C:\\Temp";
+            this.folderBrowserDialog.SelectedPath = "D:\\Users\\Ben\\OneDrive\\Pictures\\2014";
             // 
             // deleteOriginalsYes
             // 
@@ -190,6 +190,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "PhotoNamer";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
