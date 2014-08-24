@@ -1,8 +1,8 @@
-﻿using System;
-using ExifLib;
-
-namespace PhotoNamer
+﻿namespace PhotoNamer
 {
+    using System;
+    using ExifLib;
+
     public class Photo
     {
         public Photo(string path)
