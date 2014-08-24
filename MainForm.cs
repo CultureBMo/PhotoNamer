@@ -10,7 +10,7 @@
     {
         public MainForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private string GetNewName(int photoIndex)
@@ -34,7 +34,7 @@
                 this.Log(oldFilename);
                 this.Log(string.Format("Taken: {0}", photos[i].DateTaken));
 
-                var newName = GetNewName(i + 1);
+                var newName = this.GetNewName(i + 1);
 
                 this.Log(string.Format("Now called: {0}", newName));
 
@@ -74,7 +74,7 @@
                                 .OrderBy(x => x.DateTaken).ToList();
 
                 // Rename them
-                RenamePhotos(rootPath, photos);
+                this.RenamePhotos(rootPath, photos);
 
                 stopwatch.Stop();
                 this.Log(string.Format("Time elapsed: {0}", stopwatch.Elapsed));
