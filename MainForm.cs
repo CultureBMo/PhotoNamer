@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.IO;
     using System.Linq;
     using System.Windows.Forms;
@@ -13,6 +14,38 @@
             this.InitializeComponent();
         }
 
+        private static void SaveToConfig(string key, string value)
+        {
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                if (settings[key] == null)
+                {
+                    settings.Add(key, value);
+                }
+                else
+                {
+                    settings[key].Value = value;
+                }
+
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            }
+            catch
+            {
+                MessageBox.Show("There was an error saving your options" + Environment.NewLine + "Please ensure your user account has Modify permissons to the PhotoNamer.config file");
+            }
+        }
+
+        private void BrowseButton_Click(object sender, EventArgs e)
+        {
+            if (this.folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.pathTextBox.Text = this.folderBrowserDialog.SelectedPath;
+            }
+        }
+
         private string GetNewName(int photoIndex)
         {
             var formattedNumber = photoIndex.ToString("000");
@@ -20,9 +53,58 @@
             return string.Format(this.formatStringTextBox.Text, formattedNumber);
         }
 
+        private void GoButton_Click(object sender, EventArgs e)
+        {
+            this.logTextBox.Text = string.Empty;
+
+            var stopwatch = new System.Diagnostics.Stopwatch();
+            stopwatch.Start();
+
+            // get the path from config
+            var rootPath = this.pathTextBox.Text;
+
+            if (Directory.Exists(rootPath))
+            {
+                // sort the photos by DateTaken
+                var photos = Directory.GetFiles(rootPath, "*.jpg")
+                                .Select(p => new Photo(p))
+                                .OrderBy(x => x.DateTaken).ToList();
+
+                // Rename them
+                this.RenamePhotos(rootPath, photos);
+
+                stopwatch.Stop();
+                this.Log(string.Format("Time elapsed: {0}", stopwatch.Elapsed));
+                this.Log("Copyright © CultureBMo 2014");
+            }
+        }
+
         private void Log(string text)
         {
             this.logTextBox.Text += text + Environment.NewLine;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            var pathSetting = ConfigurationManager.AppSettings["Path"] ?? @"D:\Users\Ben\OneDrive\Pictures\2014";
+
+            if (!Directory.Exists(pathSetting))
+            {
+                pathSetting = @"C:\Temp";
+            }
+
+            this.pathTextBox.Text = pathSetting;
+            this.folderBrowserDialog.SelectedPath = pathSetting;
+
+            var deleteOriginalsSetting = ConfigurationManager.AppSettings["DeleteOriginals"] ?? "False";
+
+            var deleteOriginals = false;
+
+            bool.TryParse(deleteOriginalsSetting, out deleteOriginals);
+
+            deleteOriginalsYes.Checked = deleteOriginals;
+
+            this.formatStringTextBox.Text = ConfigurationManager.AppSettings["FormatString"] ?? "100 {0}.jpg";
         }
 
         private void RenamePhotos(string rootPath, List<Photo> photos)
@@ -54,53 +136,26 @@
 
                 this.Log("----------------------------");
             }
+
+            this.SaveSettings();
         }
 
-        private void GoButton_Click(object sender, EventArgs e)
+        private void SaveSettings()
         {
-            this.logTextBox.Text = string.Empty;
+            var key = "Path";
+            var value = this.pathTextBox.Text;
 
-            var stopwatch = new System.Diagnostics.Stopwatch();
-            stopwatch.Start();
+            SaveToConfig(key, value);
 
-            // get the path from config
-            var rootPath = this.pathTextBox.Text;
+            key = "DeleteOriginals";
+            value = this.deleteOriginalsYes.Checked.ToString();
 
-            if (Directory.Exists(rootPath))
-            {
-                // sort the photos by DateTaken
-                var photos = Directory.GetFiles(rootPath, "*.jpg")
-                                .Select(p => new Photo(p))
-                                .OrderBy(x => x.DateTaken).ToList();
+            SaveToConfig(key, value);
 
-                // Rename them
-                this.RenamePhotos(rootPath, photos);
+            key = "FormatString";
+            value = this.formatStringTextBox.Text;
 
-                stopwatch.Stop();
-                this.Log(string.Format("Time elapsed: {0}", stopwatch.Elapsed));
-                this.Log("Copyright © CultureBMo 2014");
-            }
-        }
-
-        private void BrowseButton_Click(object sender, EventArgs e)
-        {
-            if (this.folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                this.pathTextBox.Text = this.folderBrowserDialog.SelectedPath;
-            }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            var defaultDirectory = @"D:\Users\Ben\OneDrive\Pictures\2014";
-
-            if (!Directory.Exists(defaultDirectory))
-            {
-                defaultDirectory = @"C:\Temp";
-            }
-
-            this.pathTextBox.Text = defaultDirectory;
-            this.folderBrowserDialog.SelectedPath = defaultDirectory;
+            SaveToConfig(key, value);
         }
     }
 }
