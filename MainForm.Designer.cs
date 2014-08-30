@@ -47,7 +47,7 @@
             // goButton
             // 
             this.goButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.goButton.Location = new System.Drawing.Point(445, 94);
+            this.goButton.Location = new System.Drawing.Point(445, 52);
             this.goButton.Name = "goButton";
             this.goButton.Size = new System.Drawing.Size(75, 23);
             this.goButton.TabIndex = 0;
@@ -105,7 +105,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.formatStringTextBox.Location = new System.Drawing.Point(105, 54);
             this.formatStringTextBox.Name = "formatStringTextBox";
-            this.formatStringTextBox.Size = new System.Drawing.Size(415, 20);
+            this.formatStringTextBox.Size = new System.Drawing.Size(334, 20);
             this.formatStringTextBox.TabIndex = 8;
             this.formatStringTextBox.Text = "100 {0}.jpg";
             this.formatStringTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -121,16 +121,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(532, 137);
+            this.panel1.Size = new System.Drawing.Size(532, 98);
             this.panel1.TabIndex = 9;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.logTextBox);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 137);
+            this.panel2.Location = new System.Drawing.Point(0, 98);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(532, 278);
+            this.panel2.Size = new System.Drawing.Size(532, 317);
             this.panel2.TabIndex = 10;
             // 
             // logTextBox
@@ -140,7 +140,7 @@
             this.logTextBox.Multiline = true;
             this.logTextBox.Name = "logTextBox";
             this.logTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.logTextBox.Size = new System.Drawing.Size(532, 278);
+            this.logTextBox.Size = new System.Drawing.Size(532, 317);
             this.logTextBox.TabIndex = 0;
             // 
             // MainForm
@@ -152,6 +152,7 @@
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PhotoNamer";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);

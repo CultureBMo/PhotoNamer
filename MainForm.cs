@@ -20,6 +20,7 @@
             {
                 var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 var settings = configFile.AppSettings.Settings;
+
                 if (settings[key] == null)
                 {
                     settings.Add(key, value);
@@ -30,11 +31,14 @@
                 }
 
                 configFile.Save(ConfigurationSaveMode.Modified);
+
                 ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
             }
             catch
             {
-                MessageBox.Show("There was an error saving your options" + Environment.NewLine + "Please ensure your user account has Modify permissons to the PhotoNamer.config file");
+                MessageBox.Show("There was an error saving your options"
+                    + Environment.NewLine
+                    + "Please ensure your user account has Modify permissons to the PhotoNamer.config file");
             }
         }
 
@@ -43,6 +47,30 @@
             if (this.folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 this.pathTextBox.Text = this.folderBrowserDialog.SelectedPath;
+            }
+        }
+
+        private void CreateTemporaryPhotos(string rootPath, List<Photo> photos)
+        {
+            for (int i = 0; i < photos.Count; i++)
+            {
+                var photo = photos[i];
+
+                this.Log(photo.OriginalPath);
+                this.Log(string.Format("Taken: {0}", photo.DateTaken));
+
+                photo.NewPath = Path.Combine(rootPath, this.GetNewName(i + 1));
+
+                this.Log(string.Format("Now called: {0}", photo.NewPath));
+                this.Log("----------------------------");
+
+                if (photos[i].RequiresTemporaryFile)
+                {
+                    var tempFilename = photo.TemporaryPath;
+
+                    File.Copy(photo.OriginalPath, tempFilename, true);
+                    File.Delete(photo.OriginalPath);
+                }
             }
         }
 
@@ -60,15 +88,19 @@
             var stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
 
-            // get the path from config
             var rootPath = this.pathTextBox.Text;
 
             if (Directory.Exists(rootPath))
             {
-                // Rename them
-                this.CreateTemporaryPhotos(rootPath);
+                var photos = Directory.GetFiles(rootPath, "*.jpg")
+                        .Select(p => new Photo(p))
+                        .OrderBy(x => x.DateTaken).ToList();
 
-                this.RenameTemporaryPhotos(rootPath);
+                // create temporary copies...
+                this.CreateTemporaryPhotos(rootPath, photos);
+
+                // so that we can successfully rename them
+                this.RenameTemporaryPhotos(rootPath, photos);
 
                 this.SaveSettings();
             }
@@ -98,45 +130,15 @@
             this.formatStringTextBox.Text = ConfigurationManager.AppSettings["FormatString"] ?? "100 {0}.jpg";
         }
 
-        private void CreateTemporaryPhotos(string rootPath)
+        private void RenameTemporaryPhotos(string rootPath, List<Photo> photos)
         {
-            var photos = Directory.GetFiles(rootPath, "*.jpg")
-                    .Select(p => new Photo(p))
-                    .OrderBy(x => x.DateTaken).ToList();
-
-            for (int i = 0; i < photos.Count; i++)
+            foreach (var photo in photos)
             {
-                var oldFilename = photos[i].Path;
-
-                this.Log(oldFilename);
-                this.Log(string.Format("Taken: {0}", photos[i].DateTaken));
-
-                var tempFilename = Path.Combine(rootPath, Guid.NewGuid().ToString() + ".jpg");
-
-                File.Copy(oldFilename, tempFilename, true);
-                File.Delete(oldFilename);
-
-                this.Log(string.Format("Now called: {0}", this.GetNewName(i + 1)));
-                this.Log("----------------------------");
-            }
-        }
-
-        private void RenameTemporaryPhotos(string rootPath)
-        {
-            var photos = Directory.GetFiles(rootPath, "*.jpg")
-                    .Select(p => new Photo(p))
-                    .OrderBy(x => x.DateTaken).ToList();
-
-            for (int i = 0; i < photos.Count; i++)
-            {
-                var tempFilename = photos[i].Path;
-
-                var newName = this.GetNewName(i + 1);
-
-                var newFilename = Path.Combine(rootPath, newName);
-
-                File.Copy(tempFilename, newFilename, true);
-                File.Delete(tempFilename);
+                if (photo.RequiresTemporaryFile)
+                {
+                    File.Copy(photo.TemporaryPath, photo.NewPath, true);
+                    File.Delete(photo.TemporaryPath);
+                }
             }
         }
 

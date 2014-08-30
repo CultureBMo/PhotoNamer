@@ -8,7 +8,10 @@
     {
         public Photo(string path)
         {
-            this.Path = path;
+            this.OriginalPath = path;
+
+            var location = Path.GetDirectoryName(path);
+            this.TemporaryPath = Path.Combine(location, Guid.NewGuid().ToString() + ".jpg");
 
             try
             {
@@ -38,7 +41,27 @@
             private set;
         }
 
-        public string Path
+        public string NewPath
+        {
+            get;
+            set;
+        }
+
+        public string OriginalPath
+        {
+            get;
+            private set;
+        }
+
+        public bool RequiresTemporaryFile
+        {
+            get
+            {
+                return string.Compare(this.OriginalPath, this.NewPath, StringComparison.OrdinalIgnoreCase) != 0;
+            }
+        }
+
+        public string TemporaryPath
         {
             get;
             private set;
