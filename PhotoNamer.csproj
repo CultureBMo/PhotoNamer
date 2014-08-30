@@ -39,7 +39,7 @@
     <StartupObject>PhotoNamer.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Ixus.ico</ApplicationIcon>
+    <ApplicationIcon>Oxygen-Icons.org-Oxygen-Devices-camera-photo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ExifLib">
@@ -80,7 +80,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Ixus.ico">
+    <Content Include="Oxygen-Icons.org-Oxygen-Devices-camera-photo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ToDo.txt" />
