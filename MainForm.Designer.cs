@@ -35,9 +35,6 @@
             this.pathTextBox = new System.Windows.Forms.TextBox();
             this.browseButton = new System.Windows.Forms.Button();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.deleteOriginalsYes = new System.Windows.Forms.RadioButton();
-            this.deleteOriginalsNo = new System.Windows.Forms.RadioButton();
-            this.deleteOriginalsLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.formatStringTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -50,7 +47,7 @@
             // goButton
             // 
             this.goButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.goButton.Location = new System.Drawing.Point(445, 138);
+            this.goButton.Location = new System.Drawing.Point(445, 94);
             this.goButton.Name = "goButton";
             this.goButton.Size = new System.Drawing.Size(75, 23);
             this.goButton.TabIndex = 0;
@@ -93,41 +90,10 @@
             this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             this.folderBrowserDialog.SelectedPath = "D:\\Users\\Ben\\OneDrive\\Pictures\\2014";
             // 
-            // deleteOriginalsYes
-            // 
-            this.deleteOriginalsYes.AutoSize = true;
-            this.deleteOriginalsYes.Location = new System.Drawing.Point(105, 51);
-            this.deleteOriginalsYes.Name = "deleteOriginalsYes";
-            this.deleteOriginalsYes.Size = new System.Drawing.Size(43, 17);
-            this.deleteOriginalsYes.TabIndex = 4;
-            this.deleteOriginalsYes.Text = "Yes";
-            this.deleteOriginalsYes.UseVisualStyleBackColor = true;
-            // 
-            // deleteOriginalsNo
-            // 
-            this.deleteOriginalsNo.AutoSize = true;
-            this.deleteOriginalsNo.Checked = true;
-            this.deleteOriginalsNo.Location = new System.Drawing.Point(154, 51);
-            this.deleteOriginalsNo.Name = "deleteOriginalsNo";
-            this.deleteOriginalsNo.Size = new System.Drawing.Size(39, 17);
-            this.deleteOriginalsNo.TabIndex = 5;
-            this.deleteOriginalsNo.TabStop = true;
-            this.deleteOriginalsNo.Text = "No";
-            this.deleteOriginalsNo.UseVisualStyleBackColor = true;
-            // 
-            // deleteOriginalsLabel
-            // 
-            this.deleteOriginalsLabel.AutoSize = true;
-            this.deleteOriginalsLabel.Location = new System.Drawing.Point(12, 53);
-            this.deleteOriginalsLabel.Name = "deleteOriginalsLabel";
-            this.deleteOriginalsLabel.Size = new System.Drawing.Size(87, 13);
-            this.deleteOriginalsLabel.TabIndex = 6;
-            this.deleteOriginalsLabel.Text = "Delete Originals?";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 90);
+            this.label2.Location = new System.Drawing.Point(12, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 13);
             this.label2.TabIndex = 7;
@@ -137,7 +103,7 @@
             // 
             this.formatStringTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.formatStringTextBox.Location = new System.Drawing.Point(105, 87);
+            this.formatStringTextBox.Location = new System.Drawing.Point(105, 54);
             this.formatStringTextBox.Name = "formatStringTextBox";
             this.formatStringTextBox.Size = new System.Drawing.Size(415, 20);
             this.formatStringTextBox.TabIndex = 8;
@@ -146,28 +112,25 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.deleteOriginalsNo);
             this.panel1.Controls.Add(this.browseButton);
             this.panel1.Controls.Add(this.pathTextBox);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.goButton);
-            this.panel1.Controls.Add(this.deleteOriginalsYes);
-            this.panel1.Controls.Add(this.deleteOriginalsLabel);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.formatStringTextBox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(532, 178);
+            this.panel1.Size = new System.Drawing.Size(532, 137);
             this.panel1.TabIndex = 9;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.logTextBox);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 178);
+            this.panel2.Location = new System.Drawing.Point(0, 137);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(532, 237);
+            this.panel2.Size = new System.Drawing.Size(532, 278);
             this.panel2.TabIndex = 10;
             // 
             // logTextBox
@@ -177,7 +140,7 @@
             this.logTextBox.Multiline = true;
             this.logTextBox.Name = "logTextBox";
             this.logTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.logTextBox.Size = new System.Drawing.Size(532, 237);
+            this.logTextBox.Size = new System.Drawing.Size(532, 278);
             this.logTextBox.TabIndex = 0;
             // 
             // MainForm
@@ -206,9 +169,6 @@
         private System.Windows.Forms.TextBox pathTextBox;
         private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
-        private System.Windows.Forms.RadioButton deleteOriginalsYes;
-        private System.Windows.Forms.RadioButton deleteOriginalsNo;
-        private System.Windows.Forms.Label deleteOriginalsLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox formatStringTextBox;
         private System.Windows.Forms.Panel panel1;

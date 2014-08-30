@@ -1,1 +1,1 @@
-﻿BUG: deleting original filenames - including new filenames
+﻿Refactor: put temporary name into Photo class
