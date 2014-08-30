@@ -1,1 +1,1 @@
-﻿Read / write settings from Config
+﻿BUG: deleting original filenames - including new filenames
