@@ -80,6 +80,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="License.txt" />
     <Content Include="Oxygen-Icons.org-Oxygen-Devices-camera-photo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
