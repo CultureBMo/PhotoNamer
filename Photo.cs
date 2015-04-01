@@ -4,7 +4,7 @@
     using System.IO;
     using ExifLib;
 
-    public class Photo
+    public class Photo : MediaFile
     {
         public Photo(string path)
         {
@@ -33,38 +33,6 @@
 
                 this.DateTaken = fileCreatedDate < fileModifiedDate ? fileCreatedDate : fileModifiedDate;
             }
-        }
-
-        public DateTime DateTaken
-        {
-            get;
-            private set;
-        }
-
-        public string NewPath
-        {
-            get;
-            set;
-        }
-
-        public string OriginalPath
-        {
-            get;
-            private set;
-        }
-
-        public bool RequiresTemporaryFile
-        {
-            get
-            {
-                return string.Compare(this.OriginalPath, this.NewPath, StringComparison.OrdinalIgnoreCase) != 0;
-            }
-        }
-
-        public string TemporaryPath
-        {
-            get;
-            private set;
         }
     }
 }

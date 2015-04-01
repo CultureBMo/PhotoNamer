@@ -92,22 +92,45 @@
 
             if (Directory.Exists(rootPath))
             {
-                var photos = Directory.GetFiles(rootPath, "*.jpg")
-                        .Select(p => new Photo(p))
-                        .OrderBy(x => x.DateTaken).ToList();
+                if (this.photosButton.Checked)
+                {
+                    var photos = Directory
+                                    .EnumerateFiles(rootPath, "*.jpg")
+                                    .Select(p => new Photo(p))
+                                    .OrderBy(x => x.DateTaken).ToList();
 
-                // create temporary copies...
-                this.CreateTemporaryPhotos(rootPath, photos);
+                    // create temporary copies...
+                    this.CreateTemporaryPhotos(rootPath, photos);
 
-                // so that we can successfully rename them
-                this.RenameTemporaryPhotos(rootPath, photos);
+                    // so that we can successfully rename them
+                    this.RenameTemporaryPhotos(rootPath, photos);
+                }
+                else
+                {
+                    var videos = Directory
+                                    .EnumerateFiles(rootPath, "*.*")
+                                    .Where(s =>
+                                        s.EndsWith(".mp4", StringComparison.OrdinalIgnoreCase) ||
+                                        s.EndsWith(".mov", StringComparison.OrdinalIgnoreCase) ||
+                                        s.EndsWith(".avi", StringComparison.OrdinalIgnoreCase));
+
+                    List<Video> parp = new List<Video>();
+                    foreach (var video in videos)
+                    {
+                        var vid = new Video(video);
+                        parp.Add(vid);
+                    }
+
+                    Console.WriteLine(videos.ToString());
+                }
 
                 this.SaveSettings();
             }
 
             stopwatch.Stop();
+
             this.Log(string.Format("Time elapsed: {0}", stopwatch.Elapsed));
-            this.Log("Copyright © CultureBMo 2014");
+            this.Log("Copyright © CultureBMo 2015");
         }
 
         private void Log(string text)

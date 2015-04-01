@@ -40,6 +40,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.logTextBox = new System.Windows.Forms.TextBox();
+            this.photosButton = new System.Windows.Forms.RadioButton();
+            this.videosButton = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -112,6 +114,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.videosButton);
+            this.panel1.Controls.Add(this.photosButton);
             this.panel1.Controls.Add(this.browseButton);
             this.panel1.Controls.Add(this.pathTextBox);
             this.panel1.Controls.Add(this.label1);
@@ -121,16 +125,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(532, 98);
+            this.panel1.Size = new System.Drawing.Size(532, 110);
             this.panel1.TabIndex = 9;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.logTextBox);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 98);
+            this.panel2.Location = new System.Drawing.Point(0, 110);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(532, 317);
+            this.panel2.Size = new System.Drawing.Size(532, 305);
             this.panel2.TabIndex = 10;
             // 
             // logTextBox
@@ -140,8 +144,31 @@
             this.logTextBox.Multiline = true;
             this.logTextBox.Name = "logTextBox";
             this.logTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.logTextBox.Size = new System.Drawing.Size(532, 317);
+            this.logTextBox.Size = new System.Drawing.Size(532, 305);
             this.logTextBox.TabIndex = 0;
+            // 
+            // photosButton
+            // 
+            this.photosButton.AutoSize = true;
+            this.photosButton.Checked = true;
+            this.photosButton.Location = new System.Drawing.Point(105, 80);
+            this.photosButton.Name = "photosButton";
+            this.photosButton.Size = new System.Drawing.Size(58, 17);
+            this.photosButton.TabIndex = 9;
+            this.photosButton.TabStop = true;
+            this.photosButton.Text = "Photos";
+            this.photosButton.UseVisualStyleBackColor = true;
+            // 
+            // videosButton
+            // 
+            this.videosButton.AutoSize = true;
+            this.videosButton.Location = new System.Drawing.Point(169, 80);
+            this.videosButton.Name = "videosButton";
+            this.videosButton.Size = new System.Drawing.Size(57, 17);
+            this.videosButton.TabIndex = 10;
+            this.videosButton.TabStop = true;
+            this.videosButton.Text = "Videos";
+            this.videosButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -175,5 +202,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox logTextBox;
+        private System.Windows.Forms.RadioButton videosButton;
+        private System.Windows.Forms.RadioButton photosButton;
     }
 }
