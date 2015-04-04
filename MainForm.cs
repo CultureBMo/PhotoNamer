@@ -110,13 +110,15 @@
                 }
                 else
                 {
+                    int mediaIndex = Video.GetMediaCreatedIndex(rootPath);
+
                     mediaFiles = Directory
                                     .EnumerateFiles(rootPath, "*.*")
                                     .Where(s =>
                                         s.EndsWith(".mp4", StringComparison.OrdinalIgnoreCase) ||
                                         s.EndsWith(".mov", StringComparison.OrdinalIgnoreCase) ||
                                         s.EndsWith(".avi", StringComparison.OrdinalIgnoreCase))
-                                    .Select(v => new Video(v))
+                                    .Select(v => new Video(v, mediaIndex))
                                     .OrderBy(x => x.DateTaken);
                 }
 

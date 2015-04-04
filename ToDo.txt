@@ -1,2 +1,1 @@
 Use a background worker / multithreading to update the log
-Pass Media Created index into the class rather than looking it up each time
