@@ -23,7 +23,7 @@
 
             if (this.DateTaken == DateTime.MinValue)
             {
-                // couldn't get the Exif data - fall back to Date Modified or Date Created whichever is earliest
+                // couldn't get the Media created value - fall back to Date Modified or Date Created whichever is earliest
                 var fileCreatedDate = File.GetCreationTime(path);
                 var fileModifiedDate = File.GetLastWriteTime(path);
 
@@ -98,7 +98,7 @@
 
         private static int GetMediaCreatedIndex(Shell32.Folder folder)
         {
-            // TODO: pass this into the class rather than lookin git up each time
+            // TODO: pass this into the class rather than looking it up each time
             for (int i = 0; i < 300; i++)
             {
                 var header = folder.GetDetailsOf(null, i);

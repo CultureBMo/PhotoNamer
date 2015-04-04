@@ -50,33 +50,40 @@
             }
         }
 
-        private void CreateTemporaryPhotos(string rootPath, List<Photo> photos)
+        private void RenameFiles(string rootPath, IEnumerable<MediaFile> mediaFiles)
         {
-            for (int i = 0; i < photos.Count; i++)
+            var listOfFiles = mediaFiles.ToList();
+
+            for (int i = 0; i < listOfFiles.Count; i++)
             {
-                var photo = photos[i];
+                var mediaFile = listOfFiles[i];
 
-                this.Log(photo.OriginalPath);
-                this.Log(string.Format("Taken: {0}", photo.DateTaken));
+                this.Log(mediaFile.OriginalPath);
+                this.Log(string.Format("Taken: {0}", mediaFile.DateTaken));
 
-                photo.NewPath = Path.Combine(rootPath, this.GetNewName(i + 1));
+                mediaFile.NewPath = Path.Combine(rootPath, this.GetNewName(i + 1) + Path.GetExtension(mediaFile.OriginalPath));
 
-                this.Log(string.Format("Now called: {0}", photo.NewPath));
+                this.Log(string.Format("Now called: {0}", mediaFile.NewPath));
                 this.Log("----------------------------");
 
-                if (photos[i].RequiresTemporaryFile)
+                if (mediaFile.RequiresTemporaryFile)
                 {
-                    var tempFilename = photo.TemporaryPath;
+                    var tempFilename = mediaFile.TemporaryPath;
 
-                    File.Copy(photo.OriginalPath, tempFilename, true);
-                    File.Delete(photo.OriginalPath);
+                    File.Copy(mediaFile.OriginalPath, tempFilename, true);
+                    File.Delete(mediaFile.OriginalPath);
+
+                    File.Copy(mediaFile.TemporaryPath, mediaFile.NewPath, true);
+                    File.Delete(mediaFile.TemporaryPath);
                 }
+
+                Application.DoEvents();
             }
         }
 
-        private string GetNewName(int photoIndex)
+        private string GetNewName(int fileIndex)
         {
-            var formattedNumber = photoIndex.ToString("000");
+            var formattedNumber = fileIndex.ToString("000");
 
             return string.Format(this.formatStringTextBox.Text, formattedNumber);
         }
@@ -92,37 +99,28 @@
 
             if (Directory.Exists(rootPath))
             {
+                IEnumerable<MediaFile> mediaFiles;
+
                 if (this.photosButton.Checked)
                 {
-                    var photos = Directory
+                    mediaFiles = Directory
                                     .EnumerateFiles(rootPath, "*.jpg")
                                     .Select(p => new Photo(p))
-                                    .OrderBy(x => x.DateTaken).ToList();
-
-                    // create temporary copies...
-                    this.CreateTemporaryPhotos(rootPath, photos);
-
-                    // so that we can successfully rename them
-                    this.RenameTemporaryPhotos(rootPath, photos);
+                                    .OrderBy(x => x.DateTaken);
                 }
                 else
                 {
-                    var videos = Directory
+                    mediaFiles = Directory
                                     .EnumerateFiles(rootPath, "*.*")
                                     .Where(s =>
                                         s.EndsWith(".mp4", StringComparison.OrdinalIgnoreCase) ||
                                         s.EndsWith(".mov", StringComparison.OrdinalIgnoreCase) ||
-                                        s.EndsWith(".avi", StringComparison.OrdinalIgnoreCase));
-
-                    List<Video> parp = new List<Video>();
-                    foreach (var video in videos)
-                    {
-                        var vid = new Video(video);
-                        parp.Add(vid);
-                    }
-
-                    Console.WriteLine(videos.ToString());
+                                        s.EndsWith(".avi", StringComparison.OrdinalIgnoreCase))
+                                    .Select(v => new Video(v))
+                                    .OrderBy(x => x.DateTaken);
                 }
+
+                this.RenameFiles(rootPath, mediaFiles);
 
                 this.SaveSettings();
             }
@@ -150,19 +148,7 @@
             this.pathTextBox.Text = pathSetting;
             this.folderBrowserDialog.SelectedPath = pathSetting;
 
-            this.formatStringTextBox.Text = ConfigurationManager.AppSettings["FormatString"] ?? "100 {0}.jpg";
-        }
-
-        private void RenameTemporaryPhotos(string rootPath, List<Photo> photos)
-        {
-            foreach (var photo in photos)
-            {
-                if (photo.RequiresTemporaryFile)
-                {
-                    File.Copy(photo.TemporaryPath, photo.NewPath, true);
-                    File.Delete(photo.TemporaryPath);
-                }
-            }
+            this.formatStringTextBox.Text = ConfigurationManager.AppSettings["FormatString"] ?? "100 {0}";
         }
 
         private void SaveSettings()

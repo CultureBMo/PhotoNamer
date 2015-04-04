@@ -38,10 +38,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.formatStringTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.videosButton = new System.Windows.Forms.RadioButton();
+            this.photosButton = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.logTextBox = new System.Windows.Forms.TextBox();
-            this.photosButton = new System.Windows.Forms.RadioButton();
-            this.videosButton = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -109,7 +109,7 @@
             this.formatStringTextBox.Name = "formatStringTextBox";
             this.formatStringTextBox.Size = new System.Drawing.Size(334, 20);
             this.formatStringTextBox.TabIndex = 8;
-            this.formatStringTextBox.Text = "100 {0}.jpg";
+            this.formatStringTextBox.Text = "100 {0}";
             this.formatStringTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // panel1
@@ -127,6 +127,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(532, 110);
             this.panel1.TabIndex = 9;
+            // 
+            // videosButton
+            // 
+            this.videosButton.AutoSize = true;
+            this.videosButton.Checked = true;
+            this.videosButton.Location = new System.Drawing.Point(169, 80);
+            this.videosButton.Name = "videosButton";
+            this.videosButton.Size = new System.Drawing.Size(57, 17);
+            this.videosButton.TabIndex = 10;
+            this.videosButton.TabStop = true;
+            this.videosButton.Text = "Videos";
+            this.videosButton.UseVisualStyleBackColor = true;
+            // 
+            // photosButton
+            // 
+            this.photosButton.AutoSize = true;
+            this.photosButton.Location = new System.Drawing.Point(105, 80);
+            this.photosButton.Name = "photosButton";
+            this.photosButton.Size = new System.Drawing.Size(58, 17);
+            this.photosButton.TabIndex = 9;
+            this.photosButton.Text = "Photos";
+            this.photosButton.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
@@ -146,29 +168,6 @@
             this.logTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.logTextBox.Size = new System.Drawing.Size(532, 305);
             this.logTextBox.TabIndex = 0;
-            // 
-            // photosButton
-            // 
-            this.photosButton.AutoSize = true;
-            this.photosButton.Checked = true;
-            this.photosButton.Location = new System.Drawing.Point(105, 80);
-            this.photosButton.Name = "photosButton";
-            this.photosButton.Size = new System.Drawing.Size(58, 17);
-            this.photosButton.TabIndex = 9;
-            this.photosButton.TabStop = true;
-            this.photosButton.Text = "Photos";
-            this.photosButton.UseVisualStyleBackColor = true;
-            // 
-            // videosButton
-            // 
-            this.videosButton.AutoSize = true;
-            this.videosButton.Location = new System.Drawing.Point(169, 80);
-            this.videosButton.Name = "videosButton";
-            this.videosButton.Size = new System.Drawing.Size(57, 17);
-            this.videosButton.TabIndex = 10;
-            this.videosButton.TabStop = true;
-            this.videosButton.Text = "Videos";
-            this.videosButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
