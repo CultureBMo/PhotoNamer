@@ -138,17 +138,19 @@
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            var pathSetting = ConfigurationManager.AppSettings["Path"] ?? @"D:\Users\Ben\OneDrive\Pictures\2014";
+            var pathSetting = ConfigurationManager.AppSettings["Path"] ?? @"D:\Users\Ben\OneDrive\Pictures\2015";
 
             if (!Directory.Exists(pathSetting))
             {
-                pathSetting = @"C:\Temp\Puppy";
+                pathSetting = @"C:\Temp";
             }
 
             this.pathTextBox.Text = pathSetting;
             this.folderBrowserDialog.SelectedPath = pathSetting;
 
             this.formatStringTextBox.Text = ConfigurationManager.AppSettings["FormatString"] ?? "100 {0}";
+
+            this.photosButton.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["ForPhotosNotVideos"]);
         }
 
         private void SaveSettings()
@@ -159,6 +161,10 @@
 
             key = "FormatString";
             value = this.formatStringTextBox.Text;
+            SaveToConfig(key, value);
+
+            key = "ForPhotosNotVideos";
+            value = this.photosButton.Checked.ToString();
             SaveToConfig(key, value);
         }
     }
