@@ -1,1 +1,2 @@
 Use a background worker / multithreading to update the log
+BUG: need another for loop in RenameFiles to copy and delete temporary files - after they've all been created
