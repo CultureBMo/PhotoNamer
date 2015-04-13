@@ -56,33 +56,33 @@
 
             foreach (var mediaFile in listOfFiles)
             {
-                this.Log(mediaFile.OriginalPath);
-                this.Log(string.Format("Taken: {0}", mediaFile.DateTaken));
-
                 if (mediaFile.RequiresTemporaryFile)
                 {
                     File.Copy(mediaFile.OriginalPath, mediaFile.TemporaryPath, true);
                     File.Delete(mediaFile.OriginalPath);
                 }
-                
+
                 Application.DoEvents();
             }
-            
+
             for (int i = 0; i < listOfFiles.Count; i++)
             {
                 var mediaFile = listOfFiles[i];
-                
+
+                this.Log(mediaFile.OriginalPath);
+                this.Log(string.Format("Taken: {0}", mediaFile.DateTaken));
+
                 mediaFile.NewPath = Path.Combine(rootPath, this.GetNewName(i + 1) + Path.GetExtension(mediaFile.OriginalPath));
 
                 this.Log(string.Format("Now called: {0}", mediaFile.NewPath));
                 this.Log("----------------------------");
-                
+
                 if (mediaFile.RequiresTemporaryFile)
                 {
                     File.Copy(mediaFile.TemporaryPath, mediaFile.NewPath, true);
                     File.Delete(mediaFile.TemporaryPath);
                 }
-                
+
                 Application.DoEvents();
             }
         }
