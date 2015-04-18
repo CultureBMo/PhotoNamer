@@ -1,1 +1,2 @@
 Use a background worker / multithreading to update the log
+Use File Move instead of File Copy
