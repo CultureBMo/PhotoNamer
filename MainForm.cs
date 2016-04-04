@@ -50,43 +50,6 @@
             }
         }
 
-        private void RenameFiles(string rootPath, IEnumerable<MediaFile> mediaFiles)
-        {
-            var listOfFiles = mediaFiles.ToList();
-
-            foreach (var mediaFile in listOfFiles)
-            {
-                if (mediaFile.RequiresTemporaryFile)
-                {
-                    File.Copy(mediaFile.OriginalPath, mediaFile.TemporaryPath, true);
-                    File.Delete(mediaFile.OriginalPath);
-                }
-
-                Application.DoEvents();
-            }
-
-            for (int i = 0; i < listOfFiles.Count; i++)
-            {
-                var mediaFile = listOfFiles[i];
-
-                this.Log(mediaFile.OriginalPath);
-                this.Log(string.Format("Taken: {0}", mediaFile.DateTaken));
-
-                mediaFile.NewPath = Path.Combine(rootPath, this.GetNewName(i + 1) + Path.GetExtension(mediaFile.OriginalPath));
-
-                this.Log(string.Format("Now called: {0}", mediaFile.NewPath));
-                this.Log("----------------------------");
-
-                if (mediaFile.RequiresTemporaryFile)
-                {
-                    File.Copy(mediaFile.TemporaryPath, mediaFile.NewPath, true);
-                    File.Delete(mediaFile.TemporaryPath);
-                }
-
-                Application.DoEvents();
-            }
-        }
-
         private string GetNewName(int fileIndex)
         {
             var formattedNumber = fileIndex.ToString("000");
@@ -159,6 +122,43 @@
             this.formatStringTextBox.Text = ConfigurationManager.AppSettings["FormatString"] ?? "100 {0}";
 
             this.photosButton.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["ForPhotosNotVideos"]);
+        }
+
+        private void RenameFiles(string rootPath, IEnumerable<MediaFile> mediaFiles)
+        {
+            var listOfFiles = mediaFiles.ToList();
+
+            foreach (var mediaFile in listOfFiles)
+            {
+                if (mediaFile.RequiresTemporaryFile)
+                {
+                    File.Copy(mediaFile.OriginalPath, mediaFile.TemporaryPath, true);
+                    File.Delete(mediaFile.OriginalPath);
+                }
+
+                Application.DoEvents();
+            }
+
+            for (int i = 0; i < listOfFiles.Count; i++)
+            {
+                var mediaFile = listOfFiles[i];
+
+                this.Log(mediaFile.OriginalPath);
+                this.Log(string.Format("Taken: {0}", mediaFile.DateTaken));
+
+                mediaFile.NewPath = Path.Combine(rootPath, this.GetNewName(i + 1) + Path.GetExtension(mediaFile.OriginalPath).ToLower());
+
+                this.Log(string.Format("Now called: {0}", mediaFile.NewPath));
+                this.Log("----------------------------");
+
+                if (mediaFile.RequiresTemporaryFile)
+                {
+                    File.Copy(mediaFile.TemporaryPath, mediaFile.NewPath, true);
+                    File.Delete(mediaFile.TemporaryPath);
+                }
+
+                Application.DoEvents();
+            }
         }
 
         private void SaveSettings()

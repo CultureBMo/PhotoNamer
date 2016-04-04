@@ -74,7 +74,7 @@
             this.pathTextBox.Name = "pathTextBox";
             this.pathTextBox.Size = new System.Drawing.Size(334, 20);
             this.pathTextBox.TabIndex = 2;
-            this.pathTextBox.Text = "D:\\Users\\Ben\\OneDrive\\Pictures\\2014";
+            this.pathTextBox.Text = "C:\\Temp";
             // 
             // browseButton
             // 
@@ -131,22 +131,23 @@
             // videosButton
             // 
             this.videosButton.AutoSize = true;
-            this.videosButton.Checked = true;
             this.videosButton.Location = new System.Drawing.Point(169, 80);
             this.videosButton.Name = "videosButton";
             this.videosButton.Size = new System.Drawing.Size(57, 17);
             this.videosButton.TabIndex = 10;
-            this.videosButton.TabStop = true;
             this.videosButton.Text = "Videos";
             this.videosButton.UseVisualStyleBackColor = true;
+            this.videosButton.Visible = false;
             // 
             // photosButton
             // 
             this.photosButton.AutoSize = true;
+            this.photosButton.Checked = true;
             this.photosButton.Location = new System.Drawing.Point(105, 80);
             this.photosButton.Name = "photosButton";
             this.photosButton.Size = new System.Drawing.Size(58, 17);
             this.photosButton.TabIndex = 9;
+            this.photosButton.TabStop = true;
             this.photosButton.Text = "Photos";
             this.photosButton.UseVisualStyleBackColor = true;
             // 
