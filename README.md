@@ -1,2 +1,3 @@
 # PhotoNamer
-An application for renaming photos in a directory
+An application for renaming photos in a directory by date
+Option to rename videos needs some work...
