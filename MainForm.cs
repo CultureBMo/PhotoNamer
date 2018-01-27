@@ -100,6 +100,7 @@
 
             this.Log(string.Format("Time elapsed: {0}", stopwatch.Elapsed));
             this.Log("Copyright © CultureBMo 2015");
+            this.Log("Icon: Oxygen Team, GPL");
         }
 
         private void Log(string text)
