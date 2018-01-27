@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PhotoNamer")]
-[assembly: AssemblyCopyright("Copyright © CultureBMo 2015")]
+[assembly: AssemblyCopyright("Copyright © CultureBMo 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

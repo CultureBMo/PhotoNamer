@@ -82,7 +82,7 @@
 
         private static DateTime GetDateTaken(string path, int mediaCreatedIndex)
         {
-            var dateToReturn = new DateTime();
+            var dateToReturn = default(DateTime);
 
             Shell32.Shell shell = null;
             Shell32.Folder folder = null;

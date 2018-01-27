@@ -1,11 +1,4 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
+﻿/bin
+/obj
+/.vs
 /packages
-/bin/Debug
-/obj/Debug
-/PictureUtil.csproj.user
-/*.suo
-/PhotoNamer.csproj.user
-/StyleCop.Cache
